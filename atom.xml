@@ -4,7 +4,7 @@
   <title><![CDATA[Continous Improvement]]></title>
   <link href="http://hkhan.github.com/atom.xml" rel="self"/>
   <link href="http://hkhan.github.com/"/>
-  <updated>2011-11-26T23:22:24+00:00</updated>
+  <updated>2011-11-27T00:58:42+00:00</updated>
   <id>http://hkhan.github.com/</id>
   <author>
     <name><![CDATA[Haroon Khan]]></name>
@@ -12,5 +12,49 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Git: A simple workflow]]></title>
+    <link href="http://hkhan.github.com/blog/2011/11/26/git-a-simple-workflow/"/>
+    <updated>2011-11-26T23:41:00+00:00</updated>
+    <id>http://hkhan.github.com/blog/2011/11/26/git-a-simple-workflow</id>
+    <content type="html"><![CDATA[<p>This is a very simple yet effective workflow in small teams to encourage knowledge sharing and improve code quality. I have been using this lately and seems to be working very well. The following illustrates the workflow assuming the upstream remote named &#8216;origin&#8217; on github.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># create and switch to a new feature branch</span>
+</span><span class='line'>git checkout -b new-feature
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># do some work on the feature branch and commit locally</span>
+</span><span class='line'>git commit -m <span class="s1">&#39;Initial commit&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># push the &#39;feature&#39; branch to remote &#39;origin&#39;</span>
+</span><span class='line'>git push -u origin new-feature and <span class="nb">set </span>up tracking
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git commit -m <span class="s1">&#39;Some more feature work&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># push some more commited work to remote</span>
+</span><span class='line'>git push new-feature
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Once the feature has been completed, raise a <strong>pull request</strong> which will result in a notification to the team members to review and merge the feature code into the master branch.</p>
+
+<p>After successful code review and merging, get <strong>Hubot</strong> to deploy the master branch, test the feature and have a cup of tea!</p>
+]]></content>
+  </entry>
   
 </feed>

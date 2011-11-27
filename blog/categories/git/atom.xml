@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: git | Continous Improvement]]></title>
+  <link href="http://hkhan.github.com/blog/categories/git/atom.xml" rel="self"/>
+  <link href="http://hkhan.github.com/"/>
+  <updated>2011-11-27T00:58:42+00:00</updated>
+  <id>http://hkhan.github.com/</id>
+  <author>
+    <name><![CDATA[Haroon Khan]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Git: A simple workflow]]></title>
+    <link href="http://hkhan.github.com/blog/2011/11/26/git-a-simple-workflow/"/>
+    <updated>2011-11-26T23:41:00+00:00</updated>
+    <id>http://hkhan.github.com/blog/2011/11/26/git-a-simple-workflow</id>
+    <content type="html"><![CDATA[<p>This is a very simple yet effective workflow in small teams to encourage knowledge sharing and improve code quality. I have been using this lately and seems to be working very well. The following illustrates the workflow assuming the upstream remote named 'origin' on github.</p>
+
+<p>``` bash</p>
+
+<h1>create and switch to a new feature branch</h1>
+
+<p>git checkout -b new-feature
+<code>
+</code> bash</p>
+
+<h1>do some work on the feature branch and commit locally</h1>
+
+<p>git commit -m 'Initial commit'</p>
+
+<h1>push the 'feature' branch to remote 'origin'</h1>
+
+<p>git push -u origin new-feature and set up tracking
+<code>
+</code> bash
+git commit -m 'Some more feature work'</p>
+
+<h1>push some more commited work to remote</h1>
+
+<p>git push new-feature
+```</p>
+
+<p>Once the feature has been completed, raise a <strong>pull request</strong> which will result in a notification to the team members to review and merge the feature code into the master branch.</p>
+
+<p>After successful code review and merging, get <strong>Hubot</strong> to deploy the master branch, test the feature and have a cup of tea!</p>
+]]></content>
+  </entry>
+  
+</feed>
