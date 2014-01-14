@@ -4,6 +4,8 @@ title: "Review: Little Schemer, Fourth Edition"
 date: 2014-01-14 11:34:48 +0000
 comments: true
 categories: [Book Reviews, computation, Lisp] 
+keywords: little schemer, reviews, computation
+description: A review of The Little Schemer highlighting the main topics covered in the book
 ---
 
 [The Little Schemer](http://mitpress.mit.edu/books/little-schemer) is very different from the usual books on programming. It can probably be considered the first 'koan-style' book - it presents a dialogue between a student and a teacher which is used to further the student's progress and understanding.

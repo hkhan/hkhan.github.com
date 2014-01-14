@@ -4,6 +4,8 @@ title: "Git: A simple workflow"
 date: 2011-11-26 23:41
 comments: true
 categories: git
+keywords: git, workflow, code quality
+description: A simple git workflow for peer reviews and knowledge sharing
 ---
 
 This is a very simple yet effective workflow in small teams to encourage knowledge sharing and improve code quality. I have been using this lately and seems to be working very well. The following illustrates the workflow assuming the upstream remote named 'origin' on github.
