@@ -9,8 +9,9 @@
   <meta name="author" content="Haroon Khan">
 
   
-  <meta name="description" content=" Blog Archive 2011 Git: A simple workflow
-Nov 26 2011 posted in git Recent Posts Git: A simple workflow ">
+  <meta name="description" content="Blog Archive 2014 Review: Little Schemer, Fourth Edition
+Jan 14 2014 posted in Book Reviews, Lisp, computation 2011 Git: A Simple Workflow
+Nov 26 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -22,10 +23,11 @@ Nov 26 2011 posted in git Recent Posts Git: A simple workflow ">
   <link rel="canonical" href="http://hkhan.github.com/blog/archives">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <link href="/atom.xml" rel="alternate" title="Continous Improvement" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -38,7 +40,7 @@ Nov 26 2011 posted in git Recent Posts Git: A simple workflow ">
   <header role="banner"><hgroup>
   <h1><a href="/">Continous Improvement</a></h1>
   
-    <h2>Thoughts on programming etc. and getting better.</h2>
+    <h2>Thoughts on software development, programming, computation, learning and self-improvement.</h2>
   
 </hgroup>
 
@@ -47,12 +49,14 @@ Nov 26 2011 posted in git Recent Posts Git: A simple workflow ">
   <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
   
 </ul>
+  
 <form action="http://google.com/search" method="get">
   <fieldset role="search">
     <input type="hidden" name="q" value="site:hkhan.github.com" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
   </fieldset>
 </form>
+  
 <ul class="main-navigation">
   <li><a href="/">Blog</a></li>
   <li><a href="/blog/archives">Archives</a></li>
@@ -74,11 +78,28 @@ Nov 26 2011 posted in git Recent Posts Git: A simple workflow ">
 
 
   
+  <h2>2014</h2>
+
+<article>
+  
+<h1><a href="/blog/2014/01/14/review-little-schemer/">Review: Little Schemer, Fourth Edition</a></h1>
+<time datetime="2014-01-14T11:34:48+00:00" pubdate><span class='month'>Jan</span> <span class='day'>14</span> <span class='year'>2014</span></time>
+
+<footer>
+  <span class="categories">posted in <a class='category' href='/blog/categories/book-reviews/'>Book Reviews</a>, <a class='category' href='/blog/categories/lisp/'>Lisp</a>, <a class='category' href='/blog/categories/computation/'>computation</a></span>
+</footer>
+
+
+</article>
+
+
+
+  
   <h2>2011</h2>
 
 <article>
   
-<h1><a href="/blog/2011/11/26/git-a-simple-workflow/">Git: A simple workflow</a></h1>
+<h1><a href="/blog/2011/11/26/git-a-simple-workflow/">Git: A Simple Workflow</a></h1>
 <time datetime="2011-11-26T23:41:00+00:00" pubdate><span class='month'>Nov</span> <span class='day'>26</span> <span class='year'>2011</span></time>
 
 <footer>
@@ -102,12 +123,44 @@ Nov 26 2011 posted in git Recent Posts Git: A simple workflow ">
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2011/11/26/git-a-simple-workflow/">Git: A simple workflow</a>
+        <a href="/blog/2014/01/14/review-little-schemer/">Review: Little Schemer, Fourth Edition</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/11/26/git-a-simple-workflow/">Git: A Simple Workflow</a>
       </li>
     
   </ul>
 </section>
 
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/hkhan">@hkhan</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'hkhan',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
 
 
 
@@ -120,7 +173,7 @@ Nov 26 2011 posted in git Recent Posts Git: A simple workflow ">
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2011 - Haroon Khan -
+  Copyright &copy; 2014 - Haroon Khan -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
@@ -138,7 +191,7 @@ Nov 26 2011 posted in git Recent Posts Git: A simple workflow ">
       var twitterWidgets = document.createElement('script');
       twitterWidgets.type = 'text/javascript';
       twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
       document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
     })();
   </script>

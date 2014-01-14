@@ -9,7 +9,7 @@
   <meta name="author" content="Haroon Khan">
 
   
-  <meta name="description" content="This is a very simple yet effective workflow in small teams to encourage knowledge sharing and improve code quality. I have been using this lately &hellip;">
+  <meta name="description" content="The Little Schemer is very different from the usual books on programming. It can probably be considered the first &lsquo;koan-style&rsquo; book & &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,10 +21,11 @@
   <link rel="canonical" href="http://hkhan.github.com">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <link href="/atom.xml" rel="alternate" title="Continous Improvement" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -37,7 +38,7 @@
   <header role="banner"><hgroup>
   <h1><a href="/">Continous Improvement</a></h1>
   
-    <h2>Thoughts on programming etc. and getting better.</h2>
+    <h2>Thoughts on software development, programming, computation, learning and self-improvement.</h2>
   
 </hgroup>
 
@@ -46,12 +47,14 @@
   <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
   
 </ul>
+  
 <form action="http://google.com/search" method="get">
   <fieldset role="search">
     <input type="hidden" name="q" value="site:hkhan.github.com" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
   </fieldset>
 </form>
+  
 <ul class="main-navigation">
   <li><a href="/">Blog</a></li>
   <li><a href="/blog/archives">Archives</a></li>
@@ -62,6 +65,48 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/01/14/review-little-schemer/">Review: Little Schemer, Fourth Edition</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-14T11:34:48+00:00" pubdate data-updated="true">Jan 14<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://mitpress.mit.edu/books/little-schemer">The Little Schemer</a> is very different from the usual books on programming. It can probably be considered the first &lsquo;koan-style&rsquo; book &ndash; it presents a dialogue between a student and a teacher which is used to further the student&rsquo;s progress and understanding.</p>
+
+<p>The book starts off with the very basics and gradually builds more and more complex ideas namely <a href="http://en.wikipedia.org/wiki/Recursion_(computer_science)">recursion</a>, <a href="http://en.wikipedia.org/wiki/Fixed-point_combinator#Y_combinator">Y combinator</a> and the <a href="http://en.wikipedia.org/wiki/Meta-circular_evaluator">metacirular evaluator</a>. The code translates seamlessly to Racket which is a modern descendent of Scheme and working in DrRacket is a very enjoyable experience. I adopted a TDD approach using RackUnit as the testing framework to give a red-green-refactor style workflow. Gradually, the idea of recursion begins to sink in, the fog begins to clear and the choice of Lisp for expressing these ideas becomes clear. Its a very liberating feeling to be able to express solutions using the very minimal set of constructs whilst taking a peek at what&rsquo;s so special about Lisp.</p>
+
+<p>In short, this is a wonderful book which has something for everyone. For those new to Lisp and previously used to imperative style, its an eye-opener. It exposes the reader to elegant and beautiful ideas of computation through its learn-by-doing and learn-by-reflection approach. For curious minds, these are fascinating avenues for further exploration. I&rsquo;ve thoroughly enjoyed going through the exercises, grasping the ideas presented and learning some Lisp along the way. Its definitely on my recommendation list.</p>
+
+<p>Arguably, you can get all this with SICP which gives a much more rigorous and formal treatment of these topics (and more) but this is so much more fun and that&rsquo;s what its about, isn&rsquo;t it?</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -91,7 +136,7 @@
   </header>
 
 
-  <div class="entry-content"><p>This is a very simple yet effective workflow in small teams to encourage knowledge sharing and improve code quality. I have been using this lately and seems to be working very well. The following illustrates the workflow assuming the upstream remote named &#8216;origin&#8217; on github.</p>
+  <div class="entry-content"><p>This is a very simple yet effective workflow in small teams to encourage knowledge sharing and improve code quality. I have been using this lately and seems to be working very well. The following illustrates the workflow assuming the upstream remote named &lsquo;origin&rsquo; on github.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -147,12 +192,44 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2011/11/26/git-a-simple-workflow/">Git: A simple workflow</a>
+        <a href="/blog/2014/01/14/review-little-schemer/">Review: Little Schemer, Fourth Edition</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/11/26/git-a-simple-workflow/">Git: A Simple Workflow</a>
       </li>
     
   </ul>
 </section>
 
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/hkhan">@hkhan</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'hkhan',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
 
 
 
@@ -164,7 +241,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2011 - Haroon Khan -
+  Copyright &copy; 2014 - Haroon Khan -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
@@ -182,7 +259,7 @@
       var twitterWidgets = document.createElement('script');
       twitterWidgets.type = 'text/javascript';
       twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
       document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
     })();
   </script>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Computation | Continous Improvement]]></title>
+  <link href="http://hkhan.github.com/blog/categories/computation/atom.xml" rel="self"/>
+  <link href="http://hkhan.github.com/"/>
+  <updated>2014-01-14T14:11:30+00:00</updated>
+  <id>http://hkhan.github.com/</id>
+  <author>
+    <name><![CDATA[Haroon Khan]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Review: Little Schemer, Fourth Edition]]></title>
+    <link href="http://hkhan.github.com/blog/2014/01/14/review-little-schemer/"/>
+    <updated>2014-01-14T11:34:48+00:00</updated>
+    <id>http://hkhan.github.com/blog/2014/01/14/review-little-schemer</id>
+    <content type="html"><![CDATA[<p><a href="http://mitpress.mit.edu/books/little-schemer">The Little Schemer</a> is very different from the usual books on programming. It can probably be considered the first &lsquo;koan-style&rsquo; book &ndash; it presents a dialogue between a student and a teacher which is used to further the student&rsquo;s progress and understanding.</p>
+
+<p>The book starts off with the very basics and gradually builds more and more complex ideas namely <a href="http://en.wikipedia.org/wiki/Recursion_(computer_science)">recursion</a>, <a href="http://en.wikipedia.org/wiki/Fixed-point_combinator#Y_combinator">Y combinator</a> and the <a href="http://en.wikipedia.org/wiki/Meta-circular_evaluator">metacirular evaluator</a>. The code translates seamlessly to Racket which is a modern descendent of Scheme and working in DrRacket is a very enjoyable experience. I adopted a TDD approach using RackUnit as the testing framework to give a red-green-refactor style workflow. Gradually, the idea of recursion begins to sink in, the fog begins to clear and the choice of Lisp for expressing these ideas becomes clear. Its a very liberating feeling to be able to express solutions using the very minimal set of constructs whilst taking a peek at what&rsquo;s so special about Lisp.</p>
+
+<p>In short, this is a wonderful book which has something for everyone. For those new to Lisp and previously used to imperative style, its an eye-opener. It exposes the reader to elegant and beautiful ideas of computation through its learn-by-doing and learn-by-reflection approach. For curious minds, these are fascinating avenues for further exploration. I&rsquo;ve thoroughly enjoyed going through the exercises, grasping the ideas presented and learning some Lisp along the way. Its definitely on my recommendation list.</p>
+
+<p>Arguably, you can get all this with SICP which gives a much more rigorous and formal treatment of these topics (and more) but this is so much more fun and that&rsquo;s what its about, isn&rsquo;t it?</p>
+]]></content>
+  </entry>
+  
+</feed>
