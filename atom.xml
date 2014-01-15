@@ -4,7 +4,7 @@
   <title><![CDATA[Continous Improvement]]></title>
   <link href="http://hkhan.github.com/atom.xml" rel="self"/>
   <link href="http://hkhan.github.com/"/>
-  <updated>2014-01-14T17:31:39+00:00</updated>
+  <updated>2014-01-15T17:44:51+00:00</updated>
   <id>http://hkhan.github.com/</id>
   <author>
     <name><![CDATA[Haroon Khan]]></name>
@@ -12,6 +12,266 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Y Combinator Derivation]]></title>
+    <link href="http://hkhan.github.com/blog/2014/01/15/y-combinator-derivation/"/>
+    <updated>2014-01-15T14:17:46+00:00</updated>
+    <id>http://hkhan.github.com/blog/2014/01/15/y-combinator-derivation</id>
+    <content type="html"><![CDATA[<p>One of the benefits of going through The Little Schemer, which I&rsquo;ve <a href="http://hkhan.github.com/blog/2014/01/14/review-little-schemer/">reviewed</a> recently is that it dedicates one of the later chapters solely to arriving at the <a href="http://en.wikipedia.org/wiki/Fixed-point_combinator#Y_combinator">Y combinator</a>. It starts with a constraint that a function definition is not allowed to refer to itself. Up till this point, recursion has been the key technique for computation but what if a language only contains anonymous functions. In this case, its not possible to refer to the function which is describing the computation. How can recursion be implemented in such a language?</p>
+
+<p>This is an interesting and challenging exercise. Of course, its of little practical value in every day programming as all languages allow named function definitions. Nonetheless, its a fascinating question to ask and the real value is in the journey towards understanding and working through a problem methodically. The book provides a great step-by-step treatment of the problem but there are lots of ways to arrive at the solution. I&rsquo;ve found that each one gives new insights into functional programming techniques and ideas.</p>
+
+<p>Here is a detailed derivation inspired by <a href="http://www.ps.uni-sb.de/courses/sem-prog97/material/YYWorks.ps">A Lecture on the Why of Y</a>.</p>
+
+<div><script src='https://gist.github.com/8436742.js'></script>
+<noscript><pre><code>#lang racket
+
+(require rackunit)
+
+;; Y combinator derivation in detailed steps 
+;; (based on Why of Y derivation by Matthias Felleisen)  
+
+;; Is it possible to define a recursive function without referrring to itself?
+;; Sounds almost magical but lets give it a go.
+
+;; Define a simple recursive function which refers to itself.
+;; The aim is to remove the call to length from within itself.
+(define (length l)
+  (if (null? l) 0
+      (add1 (length (cdr l)))))
+
+(check-equal? (length &#39;(1 2 3)) 3)
+
+;; Step 1: remove the recursive call to length.
+;; Now it will work for length 0 but fail for everything else but its a start.
+(define (length0 l)
+  (if (null? l) 0
+      (add1 (hukairs (cdr l)))))
+
+;; aptly named as this function should never be called
+(define (hukairs)
+  (&quot;ERROR - should not get here&quot;))
+
+(check-equal? (length0 &#39;()) 0)
+; (check-equal? (length0 &#39;(x)) 2) FAIL
+
+;; Step 2: now make it work for a list of length 1 by calling length0
+(define (length1 l)
+  (if (null? l) 0
+      (add1 (length0 (cdr l)))))
+
+(check-equal? (length1 &#39;()) 0)
+(check-equal? (length1 &#39;(test)) 1)
+
+;; Step 3: now make it work for list of length 2 by calling length1...I see a pattern
+(define (length2 l)
+  (if (null? l) 0
+      (add1 (length1 (cdr l)))))
+
+(check-equal? (length2 &#39;()) 0)
+(check-equal? (length2 &#39;(test)) 1)
+(check-equal? (length2 &#39;(x y)) 2)
+; (check-equal? (length1 &#39;(x y z)) 3) FAIL
+
+;; From here on in, we can just use anonymous functions instead of redefining functions
+;; Step 4: rewrite length0 so that length reappears and we pass in the seed function
+;; (which ofcourse shouldn&#39;t be called for list of length 0.
+(
+ ((lambda (length)
+    (lambda (l)
+      (if (null? l) 0
+          (add1 (length (cdr l)))))) hukairs)
+ &#39;())
+;; -&gt; 0
+
+;; Step 5: rewrite length1 in the same style as above where we immediately call the
+;; new function passing in the length0 definition from Step 4
+(
+ ((lambda (length)
+    (lambda (l)
+      (if (null? l) 0
+          (add1 (length (cdr l))))))
+  ((lambda (length)                                ; &#39;inlined&#39; definition from step 4
+     (lambda (l)
+       (if (null? l) 0
+           (add1 (length (cdr l)))))) hukairs))
+ &#39;(1))
+;; -&gt; 1
+
+;; Step 6: rewrite length2 in the same style as above...I see a pattern here.
+(
+ ((lambda (length)
+    (lambda (l)
+      (if (null? l) 0
+          (add1 (length (cdr l))))))
+  ((lambda (length)
+     (lambda (l)
+       (if (null? l) 0
+           (add1 (length (cdr l))))))
+   ((lambda (length)
+      (lambda (l)
+        (if (null? l) 0
+            (add1 (length (cdr l)))))) hukairs)))
+ &#39;(1 2))
+;; -&gt; 2
+
+;; Step 7: back to length0 - extract the function which looks like length for length0.
+;; Now we call the passed in function with hukairs which should never be called.
+(
+ ((lambda (mk-length)
+    (mk-length hukairs))
+  (lambda (length)
+    (lambda (l)
+      (if (null? l) 0
+          (add1 (length (cdr l))))))) 
+ &#39;())
+;; -&gt; 0
+
+;; Step 8: repeat the above step for length1 i.e. make another call to the
+;; passed in length-like function
+(
+ ((lambda (mk-length)
+    (mk-length (mk-length hukairs)))
+  (lambda (length)
+    (lambda (l)
+      (if (null? l) 0
+          (add1 (length (cdr l))))))) 
+ &#39;(a))
+;; -&gt; 1
+
+;; Step 9: repeat for length2....I can see the pattern again.
+(
+ ((lambda (mk-length)
+    (mk-length (mk-length (mk-length hukairs))))
+  (lambda (length)
+    (lambda (l)
+      (if (null? l) 0
+          (add1 (length (cdr l))))))) 
+ &#39;(a b))
+;; -&gt; 2
+
+;; Step 10: repeat for length3...just to make sure.
+(
+ ((lambda (mk-length)
+    (mk-length (mk-length (mk-length (mk-length hukairs)))))
+  (lambda (length)
+    (lambda (l)
+      (if (null? l) 0
+          (add1 (length (cdr l))))))) 
+ &#39;(a b c))
+;; -&gt; 3
+
+;; Step 11: back to length0 variant - since we don&#39;t care about the hukairs,
+;; we could pass mk-length to mk-length instead of hukairs and no one would care.
+(
+ ((lambda (mk-length)
+    (mk-length mk-length))
+  (lambda (mk-length)
+    (lambda (l)
+      (if (null? l) 0
+          (add1 (mk-length (cdr l))))))) 
+ &#39;())
+;; -&gt; 0
+
+;; Step 12: in order to create length1, we can now call the passed in function with
+;; hukairs function as that will never be called
+(
+ ((lambda (mk-length)
+    (mk-length mk-length))
+  (lambda (mk-length)
+    (lambda (l)
+      (if (null? l) 0
+          (add1 ((mk-length hukairs) (cdr l))))))) 
+ &#39;(a))
+;; -&gt; 1
+
+;; Step 13: in order to create length2, we can replace hukairs with the passed in
+;; mk-length which means that as the recursion process is about to terminate and it
+;; requires one more call, it won&#39;t call mk-length with hukaris (which was the case
+;; in previous steps). Instead it will call the passed-in function (mk-length) with
+;; the same passed in function (mk-length) which can reach the termination condition
+;; (null? l) or call itself again, if required....MAGIC
+(
+ ((lambda (mk-length)
+    (mk-length mk-length))
+  (lambda (mk-length)
+    (lambda (l)
+      (if (null? l) 0
+          (add1 ((mk-length mk-length) (cdr l))))))) 
+ &#39;(a b))
+;; -&gt; 2
+
+;; Now its just a matter of refactoring and generalizing
+;; Step 14: extract the self application and call that length.
+(
+ ((lambda (mk-length)
+    (mk-length mk-length))
+  (lambda (mk-length)
+    ((lambda (length)
+       (lambda (l)
+         (if (null? l) 0
+             (add1 (length (cdr l))))))
+     (lambda (x) ((mk-length mk-length) x)))))
+ &#39;(a b c))
+;; -&gt; 3
+
+;; Step 15: extract the function which looks like length
+(
+ ((lambda (le)
+    ((lambda (mk-length)
+       (mk-length mk-length))
+     (lambda (mk-length)
+       (le (lambda (x) ((mk-length mk-length) x))))))
+  (lambda (length)
+    (lambda (l)
+      (if (null? l) 0
+          (add1 (length (cdr l)))))))
+ &#39;(a b c))
+;; -&gt; 3
+
+;; Step 16: separate the function that makes length from the function
+;; that looks like length (le). Notice that mk-length is bound separately in two
+;; different scopes
+(lambda (le)
+  ((lambda (mk-length)                               
+     (mk-length mk-length))
+   (lambda (mk-length)
+     (le (lambda (x) ((mk-length mk-length) x))))))
+;; -&gt; &lt;procedure&gt;
+
+;; Step 17: give the above a name Y and we have arrived at the Y-Combinator
+(define (Y le)
+  ((lambda (f) (f f))
+   (lambda (g) (le (lambda (x) ((g g) x))))))
+
+;; back to where we started from....define a function which look like length....
+(define (f mk-length)
+  (lambda (l)
+    (if (null? l) 0
+        (add1 (mk-length (cdr l))))))
+
+;; and pass that to Y to return a function which is length (without referring to itself)
+(define length-Y (Y f))
+
+(check-equal? (length-Y &#39;(a b c d e)) 5)
+
+;; also works for factorials and all other functions which can be defined recursively.
+;; (fact is not referenced from within the body)
+(define (fact n)
+  ((Y (lambda (mk-fact)
+        (lambda (n)
+          (if (= n 0) 1
+              (* n (mk-fact (- n 1))))))) n))
+
+(check-equal? (fact 5) 120)
+
+;; MAGICAL....did I hear Lambda Calculus......</code></pre></noscript></div>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Review: Little Schemer, Fourth Edition]]></title>
