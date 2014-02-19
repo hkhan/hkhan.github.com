@@ -3,7 +3,7 @@ layout: post
 title: "Builder With Lombok"
 date: 2012-09-25 13:41:35 +0000
 comments: true
-published: false
+published: true
 categories: [Java, Testing, Unit testing]
 keywords: "java testing, builder pattern, builder implementation, lombok"
 description: "Describing a very clean and simple technique for incorportating the  builder pattern espcially for unit tests"
