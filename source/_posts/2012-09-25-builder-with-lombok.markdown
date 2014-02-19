@@ -15,7 +15,7 @@ The Builder Pattern is well known as an alternative to the constructors with mul
 
 [lombok-pg](https://github.com/peichhorn/lombok-pg) provides an alternative. This library extends [Project Lombok](http://projectlombok.org/) with even more funky stuff and one of those things is `@Builder`. The usage is best illustrated with a simple example.
 
-``` java
+{% coderay lang:java %}
 package co.uk.agiletech.ecommerce.domain;
 
 import java.util.List;
@@ -36,11 +36,11 @@ public class Customer {
         return orders != null && orders.isEmpty();
     }
 }
-```
+{% endcoderay %}
 
 The builder can then be used in the test cases with ease.
 
-``` java
+{% coderay lang:java %}
 package co.uk.agiletech.ecommerce.domain;
 
 import static co.uk.agiletech.ecommerce.domain.Customer.customer;
@@ -62,7 +62,7 @@ public class CustomerTest {
         assertThat(customer.hasOrders(), is(false));
     }
 }
-```
+{% endcoderay %}
 
  
 
