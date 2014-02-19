@@ -4,7 +4,7 @@
   <title><![CDATA[Continous Improvement]]></title>
   <link href="http://hkhan.github.com/atom.xml" rel="self"/>
   <link href="http://hkhan.github.com/"/>
-  <updated>2014-01-16T13:29:17+00:00</updated>
+  <updated>2014-02-19T19:22:42+00:00</updated>
   <id>http://hkhan.github.com/</id>
   <author>
     <name><![CDATA[Haroon Khan]]></name>
@@ -19,6 +19,9 @@
     <updated>2014-01-15T14:17:46+00:00</updated>
     <id>http://hkhan.github.com/blog/2014/01/15/y-combinator-derivation</id>
     <content type="html"><![CDATA[<p>One of the benefits of going through The Little Schemer, which I&rsquo;ve <a href="http://hkhan.github.com/blog/2014/01/14/review-little-schemer/">reviewed</a> recently is that it dedicates one of the later chapters solely to arriving at the <a href="http://en.wikipedia.org/wiki/Fixed-point_combinator#Y_combinator">Y combinator</a>. It starts with a constraint that a function definition is not allowed to refer to itself. Up till this point, recursion has been the key technique for computation but what if a language only contains anonymous functions. In this case, its not possible to refer to the function which is describing the computation. How can recursion be implemented in such a language?</p>
+
+<!-- more -->
+
 
 <p>This is an interesting and challenging exercise. Of course, its of little practical value in every day programming as all languages allow named function definitions. Nonetheless, its a fascinating question to ask and the real value is in the journey towards understanding and working through a problem methodically. The book provides a great step-by-step treatment of the problem but there are lots of ways to arrive at the solution. I&rsquo;ve found that each one gives new insights into functional programming techniques and ideas.</p>
 
@@ -285,6 +288,112 @@
 <p>In short, this is a wonderful book which has something for everyone. For those new to Lisp and previously used to imperative style, its an eye-opener. It exposes the reader to elegant and beautiful ideas of computation through its learn-by-doing and learn-by-reflection approach. For curious minds, these are fascinating avenues for further exploration. I&rsquo;ve thoroughly enjoyed going through the exercises, grasping the ideas presented and learning some Lisp along the way. Its definitely on my recommendation list.</p>
 
 <p>Arguably, you can get all this with SICP which gives a much more rigorous and formal treatment of these topics (and more) but this is so much more fun and that&rsquo;s what its about, isn&rsquo;t it?</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Builder With Lombok]]></title>
+    <link href="http://hkhan.github.com/blog/2012/09/25/builder-with-lombok/"/>
+    <updated>2012-09-25T14:41:35+01:00</updated>
+    <id>http://hkhan.github.com/blog/2012/09/25/builder-with-lombok</id>
+    <content type="html"><![CDATA[<p>The Builder Pattern is well known as an alternative to the constructors with multiple arguments; it increases code readability and the fluent interface allows object creation without passing null in the constructor etc. In a recent project, I was creating the domain objects and wanted to generate the builders for these objects cleanly and automatically; the less code the better. There are several Eclipse plugins that can generate the boilerplate code but there is a very clean way to remove the need for these plugins.</p>
+
+<!-- more -->
+
+
+<p><a href="https://github.com/peichhorn/lombok-pg">lombok-pg</a> provides an alternative. This library extends <a href="http://projectlombok.org/">Project Lombok</a> with even more funky stuff and one of those things is <code>@Builder</code>. The usage is best illustrated with a simple example.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">co</span><span class="o">.</span><span class="na">uk</span><span class="o">.</span><span class="na">agiletech</span><span class="o">.</span><span class="na">ecommerce</span><span class="o">.</span><span class="na">domain</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">lombok.Builder</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">lombok.Data</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nd">@Data</span>
+</span><span class='line'><span class="nd">@Builder</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Customer</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">private</span> <span class="n">String</span> <span class="n">title</span><span class="o">;</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="n">String</span> <span class="n">firstName</span><span class="o">;</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="n">String</span> <span class="n">lastName</span><span class="o">;</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span> <span class="n">orders</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">hasOrders</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">orders</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">orders</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">();</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The builder can then be used in the test cases with ease.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">co</span><span class="o">.</span><span class="na">uk</span><span class="o">.</span><span class="na">agiletech</span><span class="o">.</span><span class="na">ecommerce</span><span class="o">.</span><span class="na">domain</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">static</span> <span class="n">co</span><span class="o">.</span><span class="na">uk</span><span class="o">.</span><span class="na">agiletech</span><span class="o">.</span><span class="na">ecommerce</span><span class="o">.</span><span class="na">domain</span><span class="o">.</span><span class="na">Customer</span><span class="o">.</span><span class="na">customer</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">static</span> <span class="n">org</span><span class="o">.</span><span class="na">hamcrest</span><span class="o">.</span><span class="na">MatcherAssert</span><span class="o">.</span><span class="na">assertThat</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">static</span> <span class="n">org</span><span class="o">.</span><span class="na">hamcrest</span><span class="o">.</span><span class="na">Matchers</span><span class="o">.</span><span class="na">is</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CustomerTest</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">private</span> <span class="n">Customer</span> <span class="n">customer</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nd">@Test</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">returnsFalseWhenCustomerHasNoOrders</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">customer</span> <span class="o">=</span> <span class="n">customer</span><span class="o">().</span><span class="na">title</span><span class="o">(</span><span class="s">&quot;Mr&quot;</span><span class="o">)</span>
+</span><span class='line'>                             <span class="o">.</span><span class="na">firstName</span><span class="o">(</span><span class="s">&quot;John&quot;</span><span class="o">)</span>
+</span><span class='line'>                             <span class="o">.</span><span class="na">lastName</span><span class="o">(</span><span class="s">&quot;Smith&quot;</span><span class="o">)</span>
+</span><span class='line'>                             <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+</span><span class='line'>        <span class="n">assertThat</span><span class="o">(</span><span class="n">customer</span><span class="o">.</span><span class="na">hasOrders</span><span class="o">(),</span> <span class="n">is</span><span class="o">(</span><span class="kc">false</span><span class="o">));</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
 ]]></content>
   </entry>
   
