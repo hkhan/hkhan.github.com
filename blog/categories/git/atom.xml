@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Git | Continous Improvement]]></title>
   <link href="http://hkhan.github.com/blog/categories/git/atom.xml" rel="self"/>
   <link href="http://hkhan.github.com/"/>
-  <updated>2014-02-19T19:22:42+00:00</updated>
+  <updated>2015-06-06T19:59:44+01:00</updated>
   <id>http://hkhan.github.com/</id>
   <author>
     <name><![CDATA[Haroon Khan]]></name>
@@ -20,29 +20,22 @@
     <id>http://hkhan.github.com/blog/2011/11/26/git-a-simple-workflow</id>
     <content type="html"><![CDATA[<p>This is a very simple yet effective workflow in small teams to encourage knowledge sharing and improve code quality. I have been using this lately and seems to be working very well. The following illustrates the workflow assuming the upstream remote named &lsquo;origin&rsquo; on github.</p>
 
-<p>``` bash</p>
+<pre><code class="bash"># create and switch to a new feature branch
+git checkout -b new-feature
+</code></pre>
 
-<h1>create and switch to a new feature branch</h1>
+<pre><code class="bash"># do some work on the feature branch and commit locally
+git commit -m 'Initial commit'
 
-<p>git checkout -b new-feature
-<code>
-</code> bash</p>
+# push the 'feature' branch to remote 'origin'
+git push -u origin new-feature and set up tracking
+</code></pre>
 
-<h1>do some work on the feature branch and commit locally</h1>
+<pre><code class="bash">git commit -m 'Some more feature work'
 
-<p>git commit -m &lsquo;Initial commit&rsquo;</p>
-
-<h1>push the &lsquo;feature&rsquo; branch to remote &lsquo;origin&rsquo;</h1>
-
-<p>git push -u origin new-feature and set up tracking
-<code>
-</code> bash
-git commit -m &lsquo;Some more feature work&rsquo;</p>
-
-<h1>push some more commited work to remote</h1>
-
-<p>git push new-feature
-```</p>
+# push some more commited work to remote
+git push new-feature
+</code></pre>
 
 <p>Once the feature has been completed, raise a <strong>pull request</strong> which will result in a notification to the team members to review and merge the feature code into the master branch.</p>
 

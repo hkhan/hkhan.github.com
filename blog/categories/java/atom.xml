@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java | Continous Improvement]]></title>
   <link href="http://hkhan.github.com/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://hkhan.github.com/"/>
-  <updated>2014-02-19T19:22:42+00:00</updated>
+  <updated>2015-06-06T19:59:44+01:00</updated>
   <id>http://hkhan.github.com/</id>
   <author>
     <name><![CDATA[Haroon Khan]]></name>
@@ -25,58 +25,52 @@
 
 <p><a href="https://github.com/peichhorn/lombok-pg">lombok-pg</a> provides an alternative. This library extends <a href="http://projectlombok.org/">Project Lombok</a> with even more funky stuff and one of those things is <code>@Builder</code>. The usage is best illustrated with a simple example.</p>
 
-<p>``` java
-package co.uk.agiletech.ecommerce.domain;</p>
+<pre><code class="java">package co.uk.agiletech.ecommerce.domain;
 
-<p>import java.util.List;</p>
+import java.util.List;
 
-<p>import lombok.Builder;
-import lombok.Data;</p>
+import lombok.Builder;
+import lombok.Data;
 
-<p>@Data
+@Data
 @Builder
-public class Customer {</p>
+public class Customer {
 
-<pre><code>private String title;
-private String firstName;
-private String lastName;
-private List&lt;Order&gt; orders;
+    private String title;
+    private String firstName;
+    private String lastName;
+    private List&lt;Order&gt; orders;
 
-public boolean hasOrders() {
-    return orders != null &amp;&amp; orders.isEmpty();
+    public boolean hasOrders() {
+        return orders != null &amp;&amp; orders.isEmpty();
+    }
 }
 </code></pre>
-
-<p>}
-```</p>
 
 <p>The builder can then be used in the test cases with ease.</p>
 
-<p>``` java
-package co.uk.agiletech.ecommerce.domain;</p>
+<pre><code class="java">package co.uk.agiletech.ecommerce.domain;
 
-<p>import static co.uk.agiletech.ecommerce.domain.Customer.customer;
+import static co.uk.agiletech.ecommerce.domain.Customer.customer;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;</p>
+import static org.hamcrest.Matchers.is;
 
-<p>import org.junit.Test;</p>
+import org.junit.Test;
 
-<p>public class CustomerTest {</p>
+public class CustomerTest {
 
-<pre><code>private Customer customer;
+    private Customer customer;
 
-@Test
-public void returnsFalseWhenCustomerHasNoOrders() {
-    customer = customer().title("Mr")
-                         .firstName("John")
-                         .lastName("Smith")
-                         .build();
-    assertThat(customer.hasOrders(), is(false));
+    @Test
+    public void returnsFalseWhenCustomerHasNoOrders() {
+        customer = customer().title("Mr")
+                             .firstName("John")
+                             .lastName("Smith")
+                             .build();
+        assertThat(customer.hasOrders(), is(false));
+    }
 }
 </code></pre>
-
-<p>}
-```</p>
 ]]></content>
   </entry>
   
